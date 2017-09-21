@@ -7,7 +7,17 @@ Send light sensor status messages with a RapsberryPI.
 - one 1uF capacitor
 - one RaspberryPI
 
-# Pre-requisites
+# Resources
+
+Source Example
+https://pimylifeup.com/raspberry-pi-light-sensor/
+
+How to install MQTT library
+https://pypi.python.org/pypi/paho-mqtt/1.1#installation
+
+How to install pip
+sudo apt-get install python-pip
+
 
 
 
