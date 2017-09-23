@@ -19,7 +19,7 @@ How to install pip: sudo apt-get install python-pip
 ## Materials
 
 - one arduino
-- one arduino ethernet shields
+- one arduino ethernet shield
 - one LDR sensor
 - one 10k ohm resistor
 
@@ -42,6 +42,6 @@ Command to set time: date +T%s\n > /dev/ttyACM0
 ## Materials
 
 - one arduino
-- one arduino ethernet shields
+- one arduino ethernet shield
 - one LDR sensor
 - one 10k ohm resistor
