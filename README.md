@@ -17,6 +17,11 @@ How to install pip: sudo apt-get install python-pip
 
 # Materials
 
+- one arduino
+- one arduino ethernet shields
+- one LDR sensor
+- one 10k ohm resistor
+
 # Resources
 
 Based on: https://learn.adafruit.com/photocells/using-a-photocell
