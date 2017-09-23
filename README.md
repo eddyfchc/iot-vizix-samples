@@ -28,6 +28,9 @@ Based on: https://learn.adafruit.com/photocells/using-a-photocell
 
 MQTT lib for arduino: https://pubsubclient.knolleary.net/
 
+Set Time using Serial: https://github.com/PaulStoffregen/Time/blob/master/examples/TimeSerial/TimeSerial.ino
+
+
 
 
 
