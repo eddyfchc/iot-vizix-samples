@@ -13,9 +13,9 @@ int sequenceNumber = 1;
 unsigned long time;  
 
 byte mac[] = {  0xDE, 0xED, 0xBA, 0xFE, 0xFE, 0xED };
-char topic[] = "/v1/test";
-char brokerId[] = "client1";
-char serialNumber[] = "TESTTAG0001";
+char topic[] = "/v1/data/ALEB/WeatherSensor";
+char brokerId[] = "client001";
+char serialNumber[] = "SENSOR0001";
 
 IPAddress ip(10, 42, 0, 3);
 IPAddress server(34,240,137,175);
@@ -32,6 +32,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
 void setup() {
   Serial.begin(9600);
   while (!Serial) ; // Needed for Leonardo only
+//  pinMode(13, OUTPUT);
   setSyncProvider( requestSync);  //set function to call when sync required
   Serial.println("Waiting for sync message");
   
@@ -56,9 +57,9 @@ void loop() {
   msg = msg + "sn," + sequenceNumber + "\n";
   
   if(photocellReading<100) {
-    msg = msg + serialNumber + ","+time+"000,status,ON";
+    msg = msg + serialNumber + ","+time+"000,weather,sunny";
   } else {
-    msg = msg + serialNumber + ","+time+"000,status,OFF";
+    msg = msg + serialNumber + ","+time+"000,weather,cloudy";
   }
 
   char payload[msg.length()+1];
