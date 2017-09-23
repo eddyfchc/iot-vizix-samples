@@ -1,31 +1,50 @@
-/* Photocell simple testing sketch. 
+#include <Ethernet.h>
+#include <PubSubClient.h>
  
-Connect one end of the photocell to 5V, the other end to Analog 0.
-Then connect one end of a 10K resistor from Analog 0 to ground 
-Connect LED from pin 11 through a resistor to ground 
-For more information see http://learn.adafruit.com/photocells */
- 
-int photocellPin = 0;     // the cell and 10K pulldown are connected to a0
-int photocellReading;     // the analog reading from the sensor divider
-int LEDpin = 11;          // connect Red LED to pin 11 (PWM pin)
-int LEDbrightness;        // 
-void setup(void) {
-  // We'll send debugging information via the Serial monitor
-  Serial.begin(9600);   
+int photocellPin = 0;
+int photocellReading;
+int LEDpin = 11;
+int LEDbrightness;  
+
+byte mac[] = {  0xDE, 0xED, 0xBA, 0xFE, 0xFE, 0xED };
+char topic[] = "/v1/test";
+char broker_id[] = "client1";
+
+IPAddress ip(10, 42, 0, 3);
+IPAddress server(34,240,137,175);
+
+void callback(char* topic, byte* payload, unsigned int length);
+
+EthernetClient ethClient;
+PubSubClient client(server, 1883, callback, ethClient);
+
+void callback(char* topic, byte* payload, unsigned int length) {
+  // nothing to do
+}
+
+void setup() {
+  Serial.begin(9600);
+  Ethernet.begin(mac, ip);   
+  if (client.connect(broker_id)) {
+    Serial.println("Connected to MQTT broker");
+  } else {
+    Serial.println("Unable to connect to MQTT broker");
+  }
 }
  
-void loop(void) {
+void loop() {
   photocellReading = analogRead(photocellPin);  
- 
-  Serial.print("Analog reading = ");
-  Serial.println(photocellReading);     // the raw analog reading
- 
-  // LED gets brighter the darker it is at the sensor
-  // that means we have to -invert- the reading from 0-1023 back to 1023-0
   photocellReading = 1023 - photocellReading;
-  //now we have to map 0-1023 to 0-255 since thats the range analogWrite uses
-  LEDbrightness = map(photocellReading, 0, 1023, 0, 255);
-  analogWrite(LEDpin, LEDbrightness);
- 
-  delay(100);
+
+  if(photocellReading<100) {
+    client.publish(topic,"hello world"); 
+  } else {
+    client.publish(topic,"NOT hello world");
+  }
+
+  Serial.print("reading: ");
+  Serial.println(photocellReading);    
+  
+  delay(2000);
+  client.loop();
 }
