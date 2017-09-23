@@ -33,7 +33,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
   memcpy(p,payload,length);
   p[length] = '\0';
   
-  
   Serial.println((char *)p);
   
   // Free the memory
@@ -58,7 +57,6 @@ void setup() {
 
   // MQTT subscribe
   client.subscribe("/v1/edge/messages");
-
 }
  
 void loop() {
@@ -85,10 +83,6 @@ void loop() {
 
   client.publish(topic, payload);
 
-//  Serial.print("reading: ");
-//  Serial.println(photocellReading);    
-//  Serial.println(payload);
-  
   delay(1000);
   sequenceNumber = sequenceNumber + 1;
   client.loop();
