@@ -13,21 +13,8 @@ int sequenceNumber = 1;
 unsigned long time;  
 
 #define MAX 3
-//float positions[MAX][2] = {
-//    {103.5,367.8},
-//    {207.0,557.1},
-//    {596.9,357.8}
-//  };
 
-float locations[MAX][2] = {
-    {82.527339,27.321639},
-    {82.526392,27.322569},
-    {82.525840,27.321835}
-  };
-  
 int counter = 0;
-
-  
 
 byte mac[] = {  0xDE, 0xED, 0xBA, 0xFE, 0xFE, 0xED };
 
@@ -75,22 +62,10 @@ void loop() {
   msg = msg + ",0,___CS___,-82.527655;27.321072;0.0;0;ft\n";
   
   if(photocellReading<150) {
-    // msg = msg + serialNumber + ","+time+"000,locationXYZ,"+positions[counter][0]+";"+positions[counter][1]+";0";
-    // msg = msg + serialNumber + ","+time+"000,location,"+locations[counter][0]+";"+locations[counter][1]+";0";
-//     {82.527339,27.321639},
-//    {82.526392,27.322569},
-//    {82.525840,27.321835}
-//    if(counter == 1) {
-//      msg = msg + serialNumber + ","+time+"000,location,82.527339;27.321639;0";      
-//    } else if(counter == 2) {
-//      msg = msg + serialNumber + ","+time+"000,location,82.526392;27.322569;0";      
-//    } else {
-//      msg = msg + serialNumber + ","+time+"000,location,82.525840;27.321835;0";      
-//    }
 
-    if(counter == 1) {
+    if(counter == 0) {
       msg = msg + serialNumber + ","+time+"000,zone,ZONEA";      
-    } else if(counter == 2) {
+    } else if(counter == 1) {
       msg = msg + serialNumber + ","+time+"000,zone,ZONEB";      
     } else {
       msg = msg + serialNumber + ","+time+"000,zone,ZONEC";      
@@ -99,7 +74,7 @@ void loop() {
     counter = (counter + 1) % MAX;
 
   } else {
-    msg = msg + serialNumber + ","+time+"000,location,-82.527044;27.321222;0.0";
+    msg = msg + serialNumber + ","+time+"000,zone,ZONEA";
   }
 
   char payload[msg.length()+1];
@@ -111,7 +86,7 @@ void loop() {
   Serial.println(photocellReading);    
   Serial.println(payload);
   
-  delay(2000);
+  delay(3000);
   sequenceNumber = sequenceNumber + 1;
   client.loop();
 }
