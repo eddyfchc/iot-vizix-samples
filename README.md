@@ -34,6 +34,8 @@ How to set time: https://github.com/PaulStoffregen/Time/blob/master/examples/Tim
 
 Post about how to set time: https://forum.arduino.cc/index.php?topic=367987.0
 
+Command to set time: date +T%s\n > /dev/ttyACM0
+
 
 
 
