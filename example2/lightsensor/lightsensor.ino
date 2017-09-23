@@ -5,7 +5,8 @@ int photocellPin = 0;
 int photocellReading;
 int LEDpin = 11;
 int sequenceNumber = 1;
-unsigned long time;   
+unsigned long time;  
+unsigned long startTime = 1506147865; 
 
 byte mac[] = {  0xDE, 0xED, 0xBA, 0xFE, 0xFE, 0xED };
 char topic[] = "/v1/test";
@@ -35,7 +36,7 @@ void setup() {
 }
  
 void loop() {
-  time = millis();
+  time = startTime+ millis();
   photocellReading = analogRead(photocellPin);  
   photocellReading = 1023 - photocellReading;
 
