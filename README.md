@@ -1,13 +1,12 @@
-Send light sensor status messages with a RapsberryPI.
-=====================================================
+# Example 1: Send light sensor status messages with a RapsberryPI
 
-# Materials
+## Materials
 
 - one LDR sensor
 - one 1uF capacitor
 - one RaspberryPI
 
-# Resources
+## Resources
 
 Based on: https://pimylifeup.com/raspberry-pi-light-sensor/
 
@@ -15,14 +14,16 @@ How to install MQTT library: https://pypi.python.org/pypi/paho-mqtt/1.1#installa
 
 How to install pip: sudo apt-get install python-pip
 
-# Materials
+# Example 2: Zone change with Arduino
+
+## Materials
 
 - one arduino
-- one arduino ethernet shields
+- one arduino ethernet shield
 - one LDR sensor
 - one 10k ohm resistor
 
-# Resources
+## Resources
 
 Based on: https://learn.adafruit.com/photocells/using-a-photocell
 
@@ -36,8 +37,11 @@ Post about how to set time: https://forum.arduino.cc/index.php?topic=367987.0
 
 Command to set time: date +T%s\n > /dev/ttyACM0
 
+# Example 3: Location change with Arduino
 
+## Materials
 
-
-
-
+- one arduino
+- one arduino ethernet shield
+- one LDR sensor
+- one 10k ohm resistor
