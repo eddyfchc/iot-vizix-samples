@@ -32,6 +32,9 @@ Time Library: https://github.com/PaulStoffregen/Time
 
 How to set time: https://github.com/PaulStoffregen/Time/blob/master/examples/TimeSerial/TimeSerial.ino
 
+Post about how to set time: https://forum.arduino.cc/index.php?topic=367987.0
+
+
 
 
 
