@@ -13,9 +13,10 @@ int sequenceNumber = 1;
 unsigned long time;  
 
 byte mac[] = {  0xDE, 0xED, 0xBA, 0xFE, 0xFE, 0xED };
-char topic[] = "/v1/data/ALEB/WeatherSensor";
+
 char brokerId[] = "client001";
-char serialNumber[] = "SENSOR0001";
+char topic[] = "/v1/data/ALEB/RFIDTag";
+char serialNumber[] = "SHIRT0001";
 
 IPAddress ip(10, 42, 0, 3);
 IPAddress server(34,240,137,175);
@@ -32,8 +33,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
 void setup() {
   Serial.begin(9600);
   while (!Serial) ; // Needed for Leonardo only
-//  pinMode(13, OUTPUT);
-  setSyncProvider( requestSync);  //set function to call when sync required
+  setSyncProvider(requestSync);  //set function to call when sync required
   Serial.println("Waiting for sync message");
   
   Ethernet.begin(mac, ip);   
@@ -56,10 +56,10 @@ void loop() {
   String msg = "";
   msg = msg + "sn," + sequenceNumber + "\n";
   
-  if(photocellReading<100) {
-    msg = msg + serialNumber + ","+time+"000,weather,sunny";
+  if(photocellReading<150) {
+    msg = msg + serialNumber + ","+time+"000,zone,ZONEA";
   } else {
-    msg = msg + serialNumber + ","+time+"000,weather,cloudy";
+    msg = msg + serialNumber + ","+time+"000,zone,ZONEB";
   }
 
   char payload[msg.length()+1];
@@ -82,7 +82,6 @@ void processSyncMessage() {
 
   if(Serial.find(TIME_HEADER)) {
      pctime = Serial.parseInt();
-     
      if( pctime >= DEFAULT_TIME) { // check the integer is a valid time (greater than Jan 1 2013)
        setTime(pctime); // Sync Arduino clock to the time received on the serial port
      }
