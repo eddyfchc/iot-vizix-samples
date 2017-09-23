@@ -20,6 +20,8 @@ How to install pip: sudo apt-get install python-pip
 # Resources
 
 Based on: https://learn.adafruit.com/photocells/using-a-photocell
+MQTT lib for arduino: https://pubsubclient.knolleary.net/
+
 
 
 
