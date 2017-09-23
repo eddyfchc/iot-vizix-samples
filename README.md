@@ -37,7 +37,7 @@ Post about how to set time: https://forum.arduino.cc/index.php?topic=367987.0
 
 Command to set time: date +T%s\n > /dev/ttyACM0
 
-# Example 3: Location change with Arduino
+# Example 3,4: Location change with Arduino and event from cloud
 
 ## Materials
 
